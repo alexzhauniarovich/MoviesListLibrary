@@ -5,14 +5,13 @@ import PackageDescription
 
 let package = Package(
     name: "MoviesListLibrary",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v15)],
     products: [
         .library(
             name: "MoviesListLibrary",
             targets: ["MoviesListLibrary"]),
     ],
     dependencies: [
-        .package(url: "../Presentation", from: "1.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
