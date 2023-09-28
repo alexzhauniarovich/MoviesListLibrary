@@ -8,6 +8,7 @@ The implementation represents the iOS application, supports iOS from 15.0, and c
 
 The package was created using xCode 14.3.1. The library represents a "package" of Swift Package Manager technology.
 There is implementation of the MVVM architecture approach, using a native data binding mechanism, with respect to Clean Architecture rules, SOLID and GRASP principles.
+
 The library is separated into 3 separate levels: Domain, Data, and Presentation, which separate the logic layer with one direction depending on the levels of each self, the layers communicated encapsulated using protocols.
 To achieve asynchronous workflow through the app, the Swift Concurrency (async/await) technology was used, and the native NSSession mechanism provided the networking processing. 
 The dependency injection was achieved in a native Swift way, without any 3rd party frameworks.
@@ -22,11 +23,11 @@ There were no any 3rd party dependencies used!
 The screen displays the "Top 5 Trending movies list" which is retrieved from the https://api.themoviedb.org/3/trending/movie/week API endpoint.
 The screen implemented a custom ViewPager view to scroll the content with a magnitude effect when the scroll stopped the library performs additional requests to retrive the particular movie details, such as:
 
-https://api.themoviedb.org/3/movie/{movie_id}
+`https://api.themoviedb.org/3/movie/{movie_id}`
 
-https://api.themoviedb.org/3/movie/{movie_id}/videos
+`https://api.themoviedb.org/3/movie/{movie_id}/videos`
 
-https://api.themoviedb.org/3/movie/{movie_id}/credits
+`https://api.themoviedb.org/3/movie/{movie_id}/credits`
 
 The details of the movie contain additional data about the movie and a scrollable horizontal list of the actors from this movie. 
 In case the trailer video exists, the users are allowed to open the video in an embedded video player and open the details of the particular actor from the description. 
@@ -39,7 +40,7 @@ In case the trailer video exists, the users are allowed to open the video in an 
 
 The screen contains details of the particular person who was patented to the movie, the data requesting from the API call 
 
-https://api.themoviedb.org/3/person/{person_id}
+`https://api.themoviedb.org/3/person/{person_id}`
 
 
 
@@ -51,19 +52,16 @@ https://api.themoviedb.org/3/person/{person_id}
 As additional functionality the opening and playing of YouTube trailer videos was implemented through WebView. 
 
 
-## Instalation
+## Usage
 
 The library target is to be used/reused in any iOS application project with a deployment version of iOS 15. 
 To bring it into your project, just add the package dependency to the app project: 
 
-<sup> 
-https://github.com/alexzhauniarovich/MoviesListLibrary.git
-</sup>  
+`https://github.com/alexzhauniarovich/MoviesListLibrary.git`
+
 
 The functionality of the library is represented as SwiftUI view entry point. Add the following code in the place where you want to get this functionality:
-
-<sup> 
-{
+```
 import SwiftUI
 import MoviesListLibrary
 
@@ -74,5 +72,6 @@ struct ContentView: View {
         MoviesListLibrary.MoviesListView
     }
 }
-}
-</sup> 
+```
+
+The automation tests coverage of this library is not implemented yet, but there is all necessary preparations have been implemented. 
