@@ -13,7 +13,9 @@ The screen displays the "Top 5 Trending movies list" which is retrieved from the
 The screen implemented a custom ViewPager view to scroll the content with a magnitude effect when scroll stopped the library performs additional requests to retrive the particular movie details, such as:
 
 https://api.themoviedb.org/3/movie/{movie_id}
+
 https://api.themoviedb.org/3/movie/{movie_id}/videos
+
 https://api.themoviedb.org/3/movie/{movie_id}/credits
 
 The details of the movie contain additional data about the movie and a scrollable horizontal list of the actors from this movie. 
