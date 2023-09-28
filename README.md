@@ -9,8 +9,8 @@ The implementation represents the iOS application, supports iOS from 15.0, and c
 The package was created using xCode 14.3.1. The library represents a "package" of Swift Package Manager technology.
 There is implementation of the MVVM architecture approach, using a native data binding mechanism, with respect to Clean Architecture rules, SOLID and GRASP principles.
 
-The library is separated into 3 separate levels: Domain, Data, and Presentation, which separate the logic layer with one direction depending on the levels of each self, the layers communicated encapsulated using protocols.
-To achieve asynchronous workflow through the app, the Swift Concurrency (async/await) technology was used, and the native NSSession mechanism provided the networking processing. 
+The library is separated into 3 separate levels: Domain, Data, and Presentation, which separate the logic layer with one direction depending of the levels of each self, the layers communicated encapsulated using protocols.
+To achieve asynchronous workflow through the app, the Swift Concurrency (async/await) technology was used, and the native NSURLSession mechanism provided the networking processing. 
 The dependency injection was achieved in a native Swift way, without any 3rd party frameworks.
 
 There were no any 3rd party dependencies used!
@@ -38,7 +38,7 @@ In case the trailer video exists, the users are allowed to open the video in an 
 
 <a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/9107dc4a-0592-4298-b69f-5fd6cab28ec5"  width="350"></a> 
 
-The screen contains details of the particular person who was patented to the movie, the data requesting from the API call 
+The screen contains details of the particular person who was participant in the movie, the data requesting from the API call 
 
 `https://api.themoviedb.org/3/person/{person_id}`
 
