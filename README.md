@@ -12,6 +12,8 @@ The library is separated into 3 separate levels: Domain, Data, and Presentation,
 To achieve asynchronous workflow through the app, the Swift Concurrency (async/await) technology was used, and the native NSSession mechanism provided the networking processing. 
 The dependency injection was achieved in a native Swift way, without any 3rd party frameworks.
 
+There were no any 3rd party dependencies used!
+
 
 ## The "Top 5 Trending movies list" screen
 
@@ -53,14 +55,14 @@ As additional functionality the opening and playing of YouTube trailer videos wa
 
 The library target is to be used/reused in any iOS application project with a deployment version of iOS 15. 
 To bring it into your project, just add the package dependency to the app project: 
-<sub> 
+
+<sup> 
 https://github.com/alexzhauniarovich/MoviesListLibrary.git
-</sub> 
+</sup>  
 
 The functionality of the library is represented as SwiftUI view entry point. Add the following code in the place where you want to get this functionality:
 
-<sub> 
-
+<sup> 
 import SwiftUI
 import MoviesListLibrary
 
@@ -71,5 +73,4 @@ struct ContentView: View {
         MoviesListLibrary.MoviesListView
     }
 }
-
-</sub> 
+</sup> 
