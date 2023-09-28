@@ -1,13 +1,8 @@
 
 public struct MoviesListLibrary {
     
-    // MARK: - Initialisation
+    // MARK: - Public views
     
-    public init() { }
+    public static var MoviesListView: MoviesListView { DependenciesGraph.sharedInstance.prepareMoviesListView() }
     
-    // MARK: - Public functions
-    
-    public func getMoviesListView() -> MoviesListView {
-        DependenciesGraph.sharedInstance.prepareMoviesListView()
-    }
 }
