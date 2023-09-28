@@ -13,7 +13,7 @@ public class ActorsUseCase {
     }
 }
 
-// MARK: - Implementation of App Info UseCase protocol
+// MARK: - Implementation of Actors UseCase protocol
 
 extension ActorsUseCase: ActorsUseCaseType {
     

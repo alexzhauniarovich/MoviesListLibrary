@@ -33,7 +33,7 @@ struct ViewPager<Content: View, T: Identifiable>: View {
         self.content = content
     }
     
-    // MARK: - Content
+    // MARK: - Layout
     
     var body: some View {
         GeometryReader { geometry in

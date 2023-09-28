@@ -8,8 +8,12 @@ struct ActorDetailsViewData {
 
 public struct ActorDetailsView: View {
     
+    // MARK: - Private fields
+    
     @StateObject private var viewModel: ActorDetailsViewModel
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    
+    // MARK: - Initialisation
     
     init(personId: Int, actorsUseCase: ActorsUseCaseType) {
         _viewModel = StateObject(wrappedValue: ActorDetailsViewModel(
@@ -21,9 +25,12 @@ public struct ActorDetailsView: View {
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
+    // MARK: - Layout
+    
     public var body: some View {
         ScrollView(.vertical) {
             VStack {
+                // Actor image view
                 AsyncImage(url: viewModel.actorDetails?.actorImageUrl) { image in
                     image
                         .resizable()
@@ -38,6 +45,7 @@ public struct ActorDetailsView: View {
                 }
                 .padding(.bottom, 18)
                 
+                // Actor name text view
                 HStack {
                     Text(viewModel.actorDetails?.name ?? "")
                         .foregroundColor(.gray)
@@ -48,6 +56,7 @@ public struct ActorDetailsView: View {
                 }
                 .padding(.bottom, 8)
                 
+                // Actor biography text view
                 Text(viewModel.actorDetails?.biography ?? "")
                     .foregroundColor(.gray)
                     .font(.system(size: 15).weight(.semibold))
@@ -61,6 +70,7 @@ public struct ActorDetailsView: View {
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .toolbar {
+            // Back button view
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: { presentationMode.wrappedValue.dismiss() }) {
                     ZStack {

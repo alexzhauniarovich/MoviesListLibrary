@@ -7,6 +7,8 @@ private enum Constants {
 
 public struct MovieCardView: View {
     
+    // MARK: - Public fields
+    
     var position: Int = 0
     
     @Binding var currentPosition: Int
@@ -14,8 +16,11 @@ public struct MovieCardView: View {
     @State var rating: String
     @State var imageUrl: URL?
     
+    // MARK: - Layout
+    
     public var body: some View {
         ZStack {
+            // Movie poster view
             AsyncImage(url: imageUrl) { image in
                 image
                     .resizable()
@@ -38,6 +43,7 @@ public struct MovieCardView: View {
             )
             .padding(.top, 24)
             
+            // Movie rating view
             if position == currentPosition {
                 VStack {
                     HStack {

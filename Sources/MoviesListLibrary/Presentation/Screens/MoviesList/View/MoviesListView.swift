@@ -12,40 +12,45 @@ struct TrendingMovieViewData: Identifiable {
 
 public struct MoviesListView: View {
     
+    // MARK: - Private fields
+    
     @StateObject private var viewModel: MoviesListViewModel
+    @State private var currentIndex: Int = 0
+    
+    // MARK: - Initialisation
     
     init(moviesUseCase: MoviesUseCaseType) {
         _viewModel = StateObject(wrappedValue: MoviesListViewModel(moviesUseCase: moviesUseCase))
     }
     
-    @State var currentIndex: Int = 0
+    // MARK: - Layout
     
     public var body: some View {
         NavigationView {
             if !viewModel.movies.isEmpty {
                 VStack {
-                    VStack {
-                        ViewPager(
-                            index: $currentIndex,
-                            items: viewModel.movies,
-                            onScrollEnded: { viewModel.didRequestMovieDetails(at: currentIndex) }
-                        ) { content in
-                            GeometryReader{ geometry in
-                                MovieCardView(
-                                    position: viewModel.movies.firstIndex(where: { $0.id == content.id }) ?? 0,
-                                    currentPosition: $currentIndex,
-                                    rating: content.rating,
-                                    imageUrl: content.posterImage
-                                )
-                                .frame(width: geometry.size.width)
-                            }
+                    // Movies posters pager view
+                    ViewPager(
+                        index: $currentIndex,
+                        items: viewModel.movies,
+                        onScrollEnded: { viewModel.didRequestMovieDetails(at: currentIndex) }
+                    ) { content in
+                        GeometryReader { geometry in
+                            MovieCardView(
+                                position: viewModel.movies.firstIndex(where: { $0.id == content.id }) ?? 0,
+                                currentPosition: $currentIndex,
+                                rating: content.rating,
+                                imageUrl: content.posterImage
+                            )
+                            .frame(width: geometry.size.width)
                         }
                     }
-                    
+                    // Movie details view
                     MovieDetailsView(movieDetails: $viewModel.movieDetails).padding(.top, 8)
                 }
                 
             } else {
+                // Loading view
                 VStack {
                     Spacer()
                     

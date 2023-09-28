@@ -40,7 +40,4 @@ class ActorDetailsViewModel: ObservableObject {
             }
         }
     }
-    
-    // MARK: - Private functions
-    
 }

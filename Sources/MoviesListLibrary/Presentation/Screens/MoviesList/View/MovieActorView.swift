@@ -12,25 +12,23 @@ struct MovieActorViewData: Hashable {
 
 public struct MovieActorView: View {
     
+    // MARK: - Public fields
+    
     @State var actorData: MovieActorViewData
+    
+    // MARK: - Private fields
     
     @State private var isShowingActorDetailsView = false
     
+    // MARK: - Layout
+    
     public var body: some View {
         NavigationLink(
-            destination: ActorDetailsView(
-                personId: actorData.actorId,
-                actorsUseCase: ActorsUseCase(
-                    actorsRepository: ActorsRepository(
-                        networkRequestManager: NetworkRequestManager(
-                            networkRequestBuilder: NetworkRequestBuilder()
-                        )
-                    )
-                )
-            ),
+            destination: DependenciesGraph.sharedInstance.prepareActorDetailsView(personId: actorData.actorId),
             isActive: $isShowingActorDetailsView
         ) {
             VStack {
+                // Actor avatar view
                 AsyncImage(url: actorData.actorAvatar) { image in
                     image
                         .resizable()
@@ -51,6 +49,7 @@ public struct MovieActorView: View {
                 .clipped()
                 .clipShape(Circle())
                 
+                // Actor name view
                 Text(actorData.actorName)
                     .foregroundColor(.black)
                     .font(.system(size: 12).weight(.heavy))

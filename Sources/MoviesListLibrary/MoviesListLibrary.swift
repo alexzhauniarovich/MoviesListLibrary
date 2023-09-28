@@ -1,18 +1,13 @@
 
 public struct MoviesListLibrary {
     
+    // MARK: - Initialisation
+    
     public init() { }
     
+    // MARK: - Public functions
+    
     public func getMoviesListView() -> MoviesListView {
-        // TODO: Implemented DI
-        MoviesListView(
-            moviesUseCase: MoviesUseCase(
-                moviesRepository: MoviesRepository(
-                    networkRequestManager: NetworkRequestManager(
-                        networkRequestBuilder: NetworkRequestBuilder()
-                    )
-                )
-            )
-        )
+        DependenciesGraph.sharedInstance.prepareMoviesListView()
     }
 }

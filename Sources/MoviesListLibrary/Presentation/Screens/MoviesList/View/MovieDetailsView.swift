@@ -6,18 +6,25 @@ struct MovieDetailsViewData {
     let isActorDetailsAvailable: Bool
     let trailerUrl: URL?
     let movieDescription: String
-    let actors: [MovieActorViewData]
+    let actors: [MovieActorViewData]?
 }
 
 public struct MovieDetailsView: View {
     
+    // MARK: - Public fields
+    
     @Binding var movieDetails: MovieDetailsViewData?
     
+    // MARK: - Private fields
+    
     @State private var isShowingVideoPlayerView = false
+    
+    // MARK: - Layout
     
     public var body: some View {
         if let movieDetails = movieDetails {
             VStack {
+                // Movie description view
                 Text(movieDetails.movieParams)
                     .foregroundColor(.gray)
                     .font(.system(size: 12).weight(.heavy))
@@ -25,6 +32,7 @@ public struct MovieDetailsView: View {
                 
                 Spacer()
                 
+                // Play trailer button view
                 if movieDetails.isPlayButtonVisible {
                     NavigationLink(
                         destination: YouTubeView(videoUrl: movieDetails.trailerUrl),
@@ -51,6 +59,7 @@ public struct MovieDetailsView: View {
                 }
                 
                 VStack {
+                    // Overview title view
                     HStack {
                         Text("Overview")
                             .foregroundColor(.gray)
@@ -61,6 +70,7 @@ public struct MovieDetailsView: View {
                     }
                     .padding(.horizontal, 16)
                     
+                    // Overview description view
                     Text(movieDetails.movieDescription)
                         .foregroundColor(.gray)
                         .font(.system(size: 14).weight(.semibold))
@@ -69,23 +79,26 @@ public struct MovieDetailsView: View {
                 }
                 .padding(.top, 10)
                 
-                Spacer()
-                
-                ScrollView(.horizontal) {
-                    LazyHStack {
-                        ForEach(movieDetails.actors, id: \.self) { value in
-                            MovieActorView(actorData: value)
+                // Actors list view
+                if let actors = movieDetails.actors {
+                    Spacer()
+                    
+                    ScrollView(.horizontal) {
+                        LazyHStack {
+                            ForEach(actors, id: \.self) { value in
+                                MovieActorView(actorData: value)
+                            }
                         }
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.horizontal, 16)
                 }
             }
         } else {
+            // Loading view
             VStack {
                 Spacer()
                 
-                ProgressView("Loading")
-                    .progressViewStyle(CircularProgressViewStyle())
+                ProgressView("Loading").progressViewStyle(CircularProgressViewStyle())
                 
                 Spacer()
             }

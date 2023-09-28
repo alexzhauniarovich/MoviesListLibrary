@@ -17,7 +17,7 @@ public class MoviesUseCase {
     }
 }
 
-// MARK: - Implementation of App Info UseCase protocol
+// MARK: - Implementation of Movies UseCase protocol
 
 extension MoviesUseCase: MoviesUseCaseType {
     
