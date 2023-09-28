@@ -1,12 +1,16 @@
 
 public struct MoviesListLibrary {
     
-    public private(set) var text = "Hello, World!"
-
-    public init() {
-    }
-    
-    public func showMoviesList() {
-//        text = Presentation.init().text
+    public func getMoviesListView() -> MoviesListView {
+        // TODO: Implemented DI 
+        MoviesListView(
+            moviesUseCase: MoviesUseCase(
+                moviesRepository: MoviesRepository(
+                    networkRequestManager: NetworkRequestManager(
+                        networkRequestBuilder: NetworkRequestBuilder()
+                    )
+                )
+            )
+        )
     }
 }
