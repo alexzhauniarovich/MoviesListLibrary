@@ -44,7 +44,7 @@ The screen contains details of the particular person who was patented to the mov
 
 
 
-## !EXTRA FEATURE!: The "YouTube trailer video player" screen
+## !EXTRA FEATURE! The "YouTube trailer video player" screen
 
 <a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/0fcbfd66-90a2-4e28-b5e7-bebdfb40290d"  width="350"></a> 
 <a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/a10c5bf6-19fb-450c-944c-04fa0ca46dd3"  width="350"></a> 
