@@ -63,6 +63,7 @@ https://github.com/alexzhauniarovich/MoviesListLibrary.git
 The functionality of the library is represented as SwiftUI view entry point. Add the following code in the place where you want to get this functionality:
 
 <sup> 
+{
 import SwiftUI
 import MoviesListLibrary
 
@@ -72,5 +73,6 @@ struct ContentView: View {
         // Showing "Top 5 Trending movies of the week"
         MoviesListLibrary.MoviesListView
     }
+}
 }
 </sup> 
