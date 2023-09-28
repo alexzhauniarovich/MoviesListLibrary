@@ -61,6 +61,7 @@ To bring it into your project, just add the package dependency to the app projec
 
 
 The functionality of the library is represented as SwiftUI view entry point. Add the following code in the place where you want to get this functionality:
+
 ```
 import SwiftUI
 import MoviesListLibrary
@@ -73,5 +74,6 @@ struct ContentView: View {
     }
 }
 ```
+
 
 The automation tests coverage of this library is not implemented yet, but there is all necessary preparations have been implemented. 
