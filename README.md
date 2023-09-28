@@ -8,6 +8,15 @@ The implementation represents the iOS application, supports iOS from 15.0, and c
 
 ## The "Top 5 Trending movies list" screen
 
+<a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/265e81dc-cf01-47ee-85ba-e5b753624eb5"  width="350" ></a> 
+
+
 ## The "YouTube trailer video player" screen
 
+<a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/a10c5bf6-19fb-450c-944c-04fa0ca46dd3"  width="350" ></a> 
+<a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/0fcbfd66-90a2-4e28-b5e7-bebdfb40290d"  width="350" ></a> 
+
+
 ## The "Movie actor details" screen
+
+<a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/9107dc4a-0592-4298-b69f-5fd6cab28ec5"  width="350" ></a> 
