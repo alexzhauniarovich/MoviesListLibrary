@@ -98,7 +98,7 @@ public struct MovieDetailsView: View {
             VStack {
                 Spacer()
                 
-                ProgressView("Loading").progressViewStyle(CircularProgressViewStyle())
+                ProgressView("Loading")
                 
                 Spacer()
             }

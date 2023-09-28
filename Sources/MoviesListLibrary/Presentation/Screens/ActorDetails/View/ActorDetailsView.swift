@@ -86,6 +86,9 @@ public struct ActorDetailsView: View {
                 }
             }
         }
+        .alert(viewModel.errorMessage ?? "", isPresented: $viewModel.showingErrorAlert) {
+            Button("OK", role: .cancel) { }
+        }
     }
 }
 

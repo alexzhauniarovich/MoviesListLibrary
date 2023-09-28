@@ -6,6 +6,9 @@ class ActorDetailsViewModel: ObservableObject {
     
     @Published var actorDetails: ActorDetailsViewData? = nil
     
+    @Published var showingErrorAlert = false
+    @Published var errorMessage: String? = nil
+    
     // MARK: - Private fields
     
     private let actorsUseCase: ActorsUseCaseType
@@ -21,6 +24,9 @@ class ActorDetailsViewModel: ObservableObject {
     // MARK: - Public functions
     
     func viewWillAppear() {
+        showingErrorAlert = false
+        errorMessage = nil
+        
         Task.detached(priority: .userInitiated) {
             do {
                 let actorDetails = try await self.actorsUseCase.getActorDetails(personId: self.personId)
@@ -30,12 +36,12 @@ class ActorDetailsViewModel: ObservableObject {
                         biography: actorDetails.biography,
                         actorImageUrl: actorDetails.actorImageUrl
                     )
-                    print(self.actorDetails.debugDescription)
                 }
                 
             } catch let error {
                 await MainActor.run {
-                    //TODO: Error handling
+                    self.errorMessage = error.localizedDescription
+                    self.showingErrorAlert = true
                 }
             }
         }

@@ -54,7 +54,7 @@ public struct MoviesListView: View {
                 VStack {
                     Spacer()
                     
-                    ProgressView("Loading").progressViewStyle(CircularProgressViewStyle())
+                    ProgressView("Loading")
                     
                     Spacer()
                 }
@@ -62,8 +62,13 @@ public struct MoviesListView: View {
         }
         .onAppear { viewModel.viewWillAppear() }
         .accentColor(.black)
+        .alert(viewModel.errorMessage ?? "", isPresented: $viewModel.showingErrorAlert) {
+            Button("OK", role: .cancel) { }
+        }
     }
 }
+
+// MARK: - Debugging
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -20,10 +20,7 @@ public struct MovieRatingView: View {
             // Rating text view
             Text(rating)
                 .foregroundColor(.white)
-                .font(
-                    .system(size: 18)
-                    .weight(.heavy)
-                )
+                .font(.system(size: 18).weight(.heavy))
         }
     }
 }

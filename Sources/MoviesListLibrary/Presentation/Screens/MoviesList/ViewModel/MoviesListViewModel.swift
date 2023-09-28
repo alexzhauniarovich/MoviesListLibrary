@@ -7,6 +7,9 @@ class MoviesListViewModel: ObservableObject {
     @Published var movies: [TrendingMovieViewData] = []
     @Published var movieDetails: MovieDetailsViewData? = nil
     
+    @Published var showingErrorAlert = false
+    @Published var errorMessage: String? = nil
+    
     // MARK: - Private fields
     
     private let moviesUseCase: MoviesUseCaseType
@@ -20,6 +23,9 @@ class MoviesListViewModel: ObservableObject {
     // MARK: - Public functions
     
     func viewWillAppear() {
+        showingErrorAlert = false
+        errorMessage = nil
+        
         Task.detached(priority: .userInitiated) {
             do {
                 let trendingWeekMovies = try await self.moviesUseCase.getTopTrendingWeekMovies()
@@ -30,7 +36,8 @@ class MoviesListViewModel: ObservableObject {
                 
             } catch let error {
                 await MainActor.run {
-                    //TODO: Error handling
+                    self.errorMessage = error.localizedDescription
+                    self.showingErrorAlert = true
                 }
             }
         }
@@ -40,6 +47,9 @@ class MoviesListViewModel: ObservableObject {
         guard let movieId = movies[safe: position]?.id else { return }
         
         movieDetails = nil
+        showingErrorAlert = false
+        errorMessage = nil
+        
         Task.detached(priority: .userInitiated) {
             do {
                 let movieDetails = try await self.moviesUseCase.getMovieDetails(movieId: movieId)
@@ -62,7 +72,8 @@ class MoviesListViewModel: ObservableObject {
                 
             } catch let error {
                 await MainActor.run {
-                    //TODO: Error handling
+                    self.errorMessage = error.localizedDescription
+                    self.showingErrorAlert = true
                 }
             }
         }
