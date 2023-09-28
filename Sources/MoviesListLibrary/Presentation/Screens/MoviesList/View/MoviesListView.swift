@@ -41,18 +41,15 @@ public struct MoviesListView: View {
                             }
                         }
                     }
-                    .onAppear { viewModel.viewWillAppear() }
                     
-                    MovieDetailsView(movieDetails: $viewModel.movieDetails)
-                        .padding(.top, 8)
+                    MovieDetailsView(movieDetails: $viewModel.movieDetails).padding(.top, 8)
                 }
                 
             } else {
                 VStack {
                     Spacer()
                     
-                    ProgressView("Loading")
-                        .progressViewStyle(CircularProgressViewStyle())
+                    ProgressView("Loading").progressViewStyle(CircularProgressViewStyle())
                     
                     Spacer()
                 }

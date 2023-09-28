@@ -52,6 +52,7 @@ public struct ActorDetailsView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 15).weight(.semibold))
                     .padding(.horizontal, 16)
+                    .padding(.bottom, 50)
                 
                 Spacer()
             }
