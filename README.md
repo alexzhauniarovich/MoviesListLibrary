@@ -2,14 +2,21 @@
 
 ## Overview 
 
-The repository contains an implementation of the test task "Top 5 Trending movies of the week"
+The repository contains an SPM package library with the implementation of the test task "Top 5 Trending movies of the week"
 There is no git strategy for the reason that the repository doesn't mean any production use.
-The implementation represents the iOS application, supports iOS from 15.0, and contains 3 screens.
+The implementation represents the iOS application, supports iOS from 15.0, and contains 3 screens. 
+
+The package was created using xCode 14.3.1. The library represents a "package" of Swift Package Manager technology.
+There is implementation of the MVVM architecture approach, using a native data binding mechanism, with respect to Clean Architecture rules, SOLID and GRASP principles.
+The library is separated into 3 separate levels: Domain, Data, and Presentation, which separate the logic layer with one direction depending on the levels of each self, the layers communicated encapsulated using protocols.
+To achieve asynchronous workflow through the app, the Swift Concurrency (async/await) technology was used, and the native NSSession mechanism provided the networking processing. 
+The dependency injection was achieved in a native Swift way, without any 3rd party frameworks.
 
 
 ## The "Top 5 Trending movies list" screen
 
 <a href="url"><img src="https://github.com/alexzhauniarovich/MoviesListLibrary/assets/77155155/265e81dc-cf01-47ee-85ba-e5b753624eb5"  width="350"></a> 
+
 The screen displays the "Top 5 Trending movies list" which is retrieved from the https://api.themoviedb.org/3/trending/movie/week API endpoint.
 The screen implemented a custom ViewPager view to scroll the content with a magnitude effect when the scroll stopped the library performs additional requests to retrive the particular movie details, such as:
 
@@ -41,3 +48,28 @@ https://api.themoviedb.org/3/person/{person_id}
 
 As additional functionality the opening and playing of YouTube trailer videos was implemented through WebView. 
 
+
+## Instalation
+
+The library target is to be used/reused in any iOS application project with a deployment version of iOS 15. 
+To bring it into your project, just add the package dependency to the app project: 
+<sub> 
+https://github.com/alexzhauniarovich/MoviesListLibrary.git
+</sub> 
+
+The functionality of the library is represented as SwiftUI view entry point. Add the following code in the place where you want to get this functionality:
+
+<sub> 
+
+import SwiftUI
+import MoviesListLibrary
+
+struct ContentView: View {
+    
+    var body: some View {
+        // Showing "Top 5 Trending movies of the week"
+        MoviesListLibrary.MoviesListView
+    }
+}
+
+</sub> 
