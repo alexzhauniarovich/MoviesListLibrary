@@ -1,8 +1,10 @@
 
 public struct MoviesListLibrary {
     
+    public init() { }
+    
     public func getMoviesListView() -> MoviesListView {
-        // TODO: Implemented DI 
+        // TODO: Implemented DI
         MoviesListView(
             moviesUseCase: MoviesUseCase(
                 moviesRepository: MoviesRepository(
