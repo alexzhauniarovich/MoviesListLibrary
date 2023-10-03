@@ -38,25 +38,28 @@ extension MoviesUseCase: MoviesUseCaseType {
     }
     
     func getMovieDetails(movieId: Int) async throws -> TrendingMovieDetails {
-        let movieDetails = try await moviesRepository.getMovieDetails(movieId: movieId)
-        let movieTrailers = try await moviesRepository.getMovieTrailers(movieId: movieId)
-        let movieCasts = try await moviesRepository.getMovieCasts(movieId: movieId)
+        async let movieDetails = try await moviesRepository.getMovieDetails(movieId: movieId)
+        async let movieCasts = try await moviesRepository.getMovieCasts(movieId: movieId)
         
-        let youTubeUrl: URL? = {
-            guard let trailerVideoKey = movieTrailers.first(where: { $0.site == "YouTube" })?.key
-            else { return nil }
-            
-            return URL(string: "https://www.youtube.com/embed/\(trailerVideoKey)")
-        }()
+        var youTubeUrl: URL? {
+            get async throws {
+                guard let trailerVideoKey = try await moviesRepository
+                    .getMovieTrailers(movieId: movieId)
+                    .first(where: { $0.site == "YouTube" })?.key
+                else { return nil }
+                
+                return URL(string: "https://www.youtube.com/embed/\(trailerVideoKey)")
+            }
+        }
 
-        return TrendingMovieDetails(
+        return await TrendingMovieDetails(
             id: movieId,
-            trailerUrl: youTubeUrl,
-            country: movieDetails.productionCountries?.first?.shortName,
-            durationMin: movieDetails.runtime,
-            releaseDate: movieDetails.releaseDate?.toDate(),
-            overview: movieDetails.overview,
-            actors: movieCasts.map {
+            trailerUrl: try youTubeUrl,
+            country: try movieDetails.productionCountries?.first?.shortName,
+            durationMin: try movieDetails.runtime,
+            releaseDate: try movieDetails.releaseDate?.toDate(),
+            overview: try movieDetails.overview,
+            actors: try movieCasts.map {
                 MovieActor(
                     id: $0.id,
                     name: $0.name,

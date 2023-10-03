@@ -19,6 +19,7 @@ extension ActorsUseCase: ActorsUseCaseType {
     
     func getActorDetails(personId: Int) async throws -> MovieActorDetails {
         let actorDetails = try await actorsRepository.getActorDetails(personId: personId)
+        
         return MovieActorDetails(
             name: actorDetails.name,
             biography: actorDetails.biography,

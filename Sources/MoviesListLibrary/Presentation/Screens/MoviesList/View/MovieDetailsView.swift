@@ -76,6 +76,8 @@ public struct MovieDetailsView: View {
                         .font(.system(size: 14).weight(.semibold))
                         .padding(.horizontal, 16)
                     
+                    Spacer()
+                    
                 }
                 .padding(.top, 10)
                 

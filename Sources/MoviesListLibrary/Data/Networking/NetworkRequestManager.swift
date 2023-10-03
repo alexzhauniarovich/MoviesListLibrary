@@ -18,7 +18,9 @@ public class NetworkRequestManager {
     func dispatch<T: Decodable>(request: Requestable, responseType: T.Type) async throws -> T {
         guard let urlRequest = networkRequestBuilder.build(request) else { throw NetworkError.invalidURL }
         printCurledRequest(urlRequest: urlRequest)
+        
         let (data, response) = try await session.data(for: urlRequest)
+        
         return try processResponse(data: data, responseType: responseType, response: response)
     }
     
